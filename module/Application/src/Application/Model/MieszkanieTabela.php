@@ -59,7 +59,15 @@ class MieszkanieTabela {
         if($this->tableGateway->update($data, array('id'=>$id))){
             return $id;
         } else {
-//            throw new Exception('DB insert project error');
+            throw new Exception('DB insert project error');
+        }
+    }
+    
+    public function delete($id) {
+        if($this->tableGateway->delete(array('id' => $id))) {
+            return $id;
+        } else {
+            throw new Exception("DB delete error");
         }
     }
 }

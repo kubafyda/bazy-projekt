@@ -60,12 +60,13 @@ class MieszkanieController extends AbstractRestfulController
     }
 
     public function delete($id) {   // Action used for DELETE requests
-        return new JsonModel(array('data' => 'album id '. $id .' deleted'));
+        $this->getMieszkanieTabela()->delete($id);
+        return new JsonModel(array('id' => $id));
     }
     
     /**
      * 
-     * @return \Project\Model\ProjectTable
+     * @return \Application\Model\MieszkanieTabela
      */
     public function getMieszkanieTabela(){
         if(!$this->mieszkanieTabele){

@@ -63,12 +63,25 @@ return array(
                     ),
                 ),
             ),
+            'osoba' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/osoba[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Osoba',
+                    ),
+                ),
+            ),
         ),
     ),
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Mieszkanie' => 'Application\Controller\MieszkanieController',
+            'Application\Controller\Osoba' => 'Application\Controller\OsobaController',
         ),
     ),
     'view_manager' => array(

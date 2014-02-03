@@ -51,10 +51,10 @@ return array(
                     ),
                 ),
             ),
-            'mieszkanie' => array(
+            'mieszkania' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/mieszkanie[/:id]',
+                    'route'    => '/mieszkania[/:id]',
                     'constraints' => array(
                         'id'     => '[0-9]+',
                     ),
@@ -63,10 +63,10 @@ return array(
                     ),
                 ),
             ),
-            'osoba' => array(
+            'osoby' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/osoba[/:id]',
+                    'route'    => '/osoby[/:id]',
                     'constraints' => array(
                         'id'     => '[0-9]+',
                     ),
@@ -75,11 +75,10 @@ return array(
                     ),
                 ),
             ),
-          
-              'msza' => array(
+            'msze' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/msza[/:id]',
+                    'route'    => '/msze[/:id]',
                     'constraints' => array(
                         'id'     => '[0-9]+',
                     ),
@@ -89,10 +88,10 @@ return array(
                 ),
             ),
                     
-              'ksiadz' => array(
+            'ksieza' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/ksiadz[/:id]',
+                    'route'    => '/ksieza[/:id]',
                     'constraints' => array(
                         'id'     => '[0-9]+',
                     ),

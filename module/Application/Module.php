@@ -40,6 +40,23 @@ class Module
                     
                     return new Model\OsobaTabela($tableGateway);
                 },
+                 'MszaTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Msza());
+                    $tableGateway = new TableGateway('msza',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\MszaTabela($tableGateway);
+                },
+                  'KsiadzTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Ksiadz());
+                    $tableGateway = new TableGateway('ksiadz',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\KsiadzTabela($tableGateway);
+                },      
+                       
             ),
         );
     }

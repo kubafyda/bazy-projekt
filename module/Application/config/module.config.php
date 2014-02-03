@@ -75,6 +75,103 @@ return array(
                     ),
                 ),
             ),
+          
+              'msza' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/msza[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Msza',
+                    ),
+                ),
+            ),
+                    
+              'ksiadz' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/ksiadz[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ksiadz',
+                    ),
+                ),
+            ),
+            
+            /*
+             * sakrament
+             */
+            /*
+              'osoba' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/osoba[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Osoba',
+                    ),
+                ),
+            ),
+            */
+            /*
+             * pogrzeb
+             */
+            /*
+              'osoba' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/osoba[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Osoba',
+                    ),
+                ),
+            ),
+            */
+            /*
+             * slub
+             */
+            /*
+              'osoba' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/osoba[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Osoba',
+                    ),
+                ),
+            ),
+            */
+            /*
+             * chrzest
+             */
+            /*
+              'osoba' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/osoba[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Osoba',
+                    ),
+                ),
+            ),
+            */
+
+            
         ),
     ),
     'controllers' => array(
@@ -82,6 +179,8 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Mieszkanie' => 'Application\Controller\MieszkanieController',
             'Application\Controller\Osoba' => 'Application\Controller\OsobaController',
+            'Application\Controller\Msza' => 'Application\Controller\MszaController',
+            'Application\Controller\Ksiadz' => 'Application\Controller\KsiadzController',
         ),
     ),
     'view_manager' => array(

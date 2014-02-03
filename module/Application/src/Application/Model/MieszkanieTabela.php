@@ -17,7 +17,8 @@ class MieszkanieTabela {
     
     /**
      * 
-     * @return array of \Project\Entity\Project
+     * @return array of \Application\Entity\Mieszkanie
+     * 
      */
     public function getAll(){
         $resultSet = $this->tableGateway->select();
@@ -26,7 +27,8 @@ class MieszkanieTabela {
 
     /**
      * 
-     * @return \Project\Entity\Project
+     * @return \Application\Entity\Mieszkanie
+     * 
      */
     public function get($id)
     {

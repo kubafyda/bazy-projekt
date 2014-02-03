@@ -5,9 +5,9 @@ namespace Application\Model;
 use Zend\Db\TableGateway\TableGateway;
 use Exception;
 
-use Application\Entity\Osoba;
+use Application\Entity\Ksiadz;
 
-class OsobaTabela {
+class KsiadzTabela {
       protected $tableGateway;
 
     public function __construct(TableGateway $tableGateway)
@@ -17,7 +17,7 @@ class OsobaTabela {
     
     /**
      * 
-     * @return array of \Application\Entity\Osoba
+     * @return array of \Application\Entity\Ksiadz
      * 
      */
     public function getAll(){
@@ -27,7 +27,7 @@ class OsobaTabela {
 
     /**
      * 
-     * @return \Application\Entity\Osoba
+     * @return \Application\Entity\Ksiadz
      * 
      */
     public function get($id)
@@ -37,14 +37,14 @@ class OsobaTabela {
         return $rowset->current();
     }
     
-    public function add(Osoba $rekord) {
+    public function add(Ksiadz $rekord) {
         $data = array(
             'id' => $rekord->id,
             'imie_nazwisko' => $rekord->imie_nazwisko,
-            'data_urodzenia' => $rekord->data_urodzenia,
-            'zawod' => $rekord->zawod,
-            'parafianin' => $rekord->parafianin,
-            'zywa' => $rekord->zywa,
+            'data_swiecen' => $rekord->data_swiecen,
+            'tytul' => $rekord->tytul,
+            'funkcja_w_parafii' => $rekord->funkcja_w_parafii,
+           
             
            );
         
@@ -55,13 +55,12 @@ class OsobaTabela {
         }
     }
     
-    public function update($id, Osoba $rekord) {
+    public function update($id, Ksiadz $rekord) {
         $data = array(
-            'imie_nazwisko' => $rekord->imie_nazwisko,
-            'data_urodzenia' => $rekord->data_urodzenia,
-            'zawod' => $rekord->zawod,
-            'parafianin' => $rekord->parafianin,
-            'zywa' => $rekord->zywa,
+           'imie_nazwisko' => $rekord->imie_nazwisko,
+            'data_swiecen' => $rekord->data_swiecen,
+            'tytul' => $rekord->tytul,
+            'funkcja_w_parafii' => $rekord->funkcja_w_parafii,
         );
         if($this->tableGateway->update($data, array('id'=>$id))){
             return $id;

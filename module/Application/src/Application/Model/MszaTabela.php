@@ -40,6 +40,8 @@ class MszaTabela {
     public function add(Msza $rekord) {
         $data = array(
             'id' => $rekord->id,
+            'osobaid' => $rekord->osobaid,
+            'ksiadzid' => $rekord->ksiadzid,
             'intencja' => $rekord->intencja,
             'data_mszy' => $rekord->data_mszy,
             'ofiara' => $rekord->ofiara,
@@ -54,6 +56,7 @@ class MszaTabela {
     
     public function update($id, Msza $rekord) {
         $data = array(
+            'ksiadzid' => $rekord->ksiadzid,
             'intencja' => $rekord->intencja,
             'data_mszy' => $rekord->data_mszy,
             'ofiara' => $rekord->ofiara,

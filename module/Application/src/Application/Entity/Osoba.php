@@ -46,7 +46,7 @@ class Osoba {
             $this->data_urodzenia = (isset($data['data_urodzenia'])) ? $data['data_urodzenia'] : null;
             $this->zawod = (isset($data['zawod'])) ? $data['zawod'] : null;
             $this->parafianin = (isset($data['parafianin'])) ? $data['parafianin'] : null;
-            $this->zywa = (isset($data['zywa'])) ? $data['zawod'] : null;
+            $this->zywa = (isset($data['zywa'])) ? $data['zywa'] : null;
         }
         
         

@@ -17,7 +17,7 @@ class OsobaTabela {
     
     /**
      * 
-     * @return array of \Project\Entity\Project
+     * @return array of \Application\Entity\Osoba
      */
     public function getAll(){
         $resultSet = $this->tableGateway->select();
@@ -26,7 +26,7 @@ class OsobaTabela {
 
     /**
      * 
-     * @return \Project\Entity\Project
+     * @return \Application\Entity\Osoba
      */
     public function get($id)
     {

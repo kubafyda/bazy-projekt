@@ -32,6 +32,14 @@ class Module
                     
                     return new Model\MieszkanieTabela($tableGateway);
                 },
+                'OsobaTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Osoba());
+                    $tableGateway = new TableGateway('osoba',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\OsobaTabela($tableGateway);
+                },
             ),
         );
     }

@@ -4,6 +4,7 @@ namespace Application\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 use Exception;
+use Zend\Db\Sql\Sql;
 
 use Application\Entity\Msza;
 
@@ -18,10 +19,19 @@ class MszaTabela {
     /**
      * 
      * @return array of \Application\Entity\Msza
-     * 
+     * Join z tabelami 'osoba' i 'ksiadz' dla uzyskania nazwiska osoby i ksiedza nie tylko ID
      */
     public function getAll(){
-        $resultSet = $this->tableGateway->select();
+        $adapter = $this->tableGateway->getAdapter();
+        $sql = new Sql($adapter);
+
+        $select = $sql->select();
+        $select->from(array('m'=>'msza',))
+               ->join(array('o'=>'osoba'), 'm.osobaid = o.id', array('osoba' => 'imie_nazwisko'), $select::JOIN_LEFT)
+               ->join(array('k'=>'ksiadz'), 'm.ksiadzid = k.id', array('ksiadz' => 'imie_nazwisko'), $select::JOIN_LEFT);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = $statement->execute();
         return $resultSet;
     }
 

@@ -55,6 +55,14 @@ class Module
                     $tableGateway = new TableGateway('ksiadz',$dbAdapter,null,$resultSetPrototype,null);
                     
                     return new Model\KsiadzTabela($tableGateway);
+                },    
+                'SakramentTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Sakrament());
+                    $tableGateway = new TableGateway('sakrament',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\SakramentTabela($tableGateway);
                 },      
                 'GrobTabela' =>  function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');

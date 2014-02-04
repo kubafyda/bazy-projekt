@@ -99,6 +99,21 @@ return array(
                     ),
                 ),
             ),
+            /** 
+             * Sakrament
+             */
+            'sakramenty' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/sakramenty[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Sakrament',
+                    ),
+                ),
+            ),
             
             /*
              * pogrzeb
@@ -175,6 +190,7 @@ return array(
             'Application\Controller\Osoba' => 'Application\Controller\OsobaController',
             'Application\Controller\Msza' => 'Application\Controller\MszaController',
             'Application\Controller\Ksiadz' => 'Application\Controller\KsiadzController',
+            'Application\Controller\Sakrament' => 'Application\Controller\SakramentController',
             'Application\Controller\Grob' => 'Application\Controller\GrobController',
             'Application\Controller\Pogrzeb' => 'Application\Controller\PogrzebController',
         ),

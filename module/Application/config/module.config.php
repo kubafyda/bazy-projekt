@@ -87,7 +87,6 @@ return array(
                     ),
                 ),
             ),
-                    
             'ksieza' => array(
                 'type'    => 'segment',
                 'options' => array(
@@ -102,39 +101,35 @@ return array(
             ),
             
             /*
-             * sakrament
-             */
-            /*
-              'osoba' => array(
-                'type'    => 'segment',
-                'options' => array(
-                    'route'    => '/osoba[/:id]',
-                    'constraints' => array(
-                        'id'     => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Osoba',
-                    ),
-                ),
-            ),
-            */
-            /*
              * pogrzeb
              */
-            /*
-              'osoba' => array(
+            'pogrzeby' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/osoba[/:id]',
+                    'route'    => '/pogrzeby[/:id]',
                     'constraints' => array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Osoba',
+                        'controller' => 'Application\Controller\Pogrzeb',
                     ),
                 ),
             ),
-            */
+            /*
+             * groby
+             */
+            'groby' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/groby[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Grob',
+                    ),
+                ),
+            ),
             /*
              * slub
              */
@@ -180,6 +175,8 @@ return array(
             'Application\Controller\Osoba' => 'Application\Controller\OsobaController',
             'Application\Controller\Msza' => 'Application\Controller\MszaController',
             'Application\Controller\Ksiadz' => 'Application\Controller\KsiadzController',
+            'Application\Controller\Grob' => 'Application\Controller\GrobController',
+            'Application\Controller\Pogrzeb' => 'Application\Controller\PogrzebController',
         ),
     ),
     'view_manager' => array(

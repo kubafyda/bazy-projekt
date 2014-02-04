@@ -40,7 +40,7 @@ class Module
                     
                     return new Model\OsobaTabela($tableGateway);
                 },
-                 'MszaTabela' =>  function($sm) {
+                'MszaTabela' =>  function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Entity\Msza());
@@ -48,7 +48,7 @@ class Module
                     
                     return new Model\MszaTabela($tableGateway);
                 },
-                  'KsiadzTabela' =>  function($sm) {
+                'KsiadzTabela' =>  function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Entity\Ksiadz());
@@ -56,7 +56,22 @@ class Module
                     
                     return new Model\KsiadzTabela($tableGateway);
                 },      
-                       
+                'GrobTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Grob());
+                    $tableGateway = new TableGateway('grob',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\GrobTabela($tableGateway);
+                },       
+                'PogrzebTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Pogrzeb());
+                    $tableGateway = new TableGateway('pogrzeb',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\PogrzebTabela($tableGateway);
+                },       
             ),
         );
     }

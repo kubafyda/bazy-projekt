@@ -27,7 +27,7 @@ class ChrzestTabela {
 
         $select = $sql->select();
         $select->from(array('p'=>'chrzest',))
-              // ->columns(array('grobid'))
+              // ->columns(array('dzieckoid'))
                ->join(array('s'=>'sakrament'), 'p.sakramentid = s.id', array('*'), $select::JOIN_LEFT);
 
         $statement = $sql->prepareStatementForSqlObject($select);

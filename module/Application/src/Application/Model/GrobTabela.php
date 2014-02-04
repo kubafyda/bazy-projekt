@@ -4,6 +4,7 @@ namespace Application\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 use Exception;
+use Zend\Db\Sql\Sql;
 
 use Application\Entity\Grob;
 
@@ -16,25 +17,38 @@ class GrobTabela {
     }
     
     /**
-     * 
      * @return array of \Application\Entity\Grob;
-     * 
      */
     public function getAll(){
-        $resultSet = $this->tableGateway->select();
+        $adapter = $this->tableGateway->getAdapter();
+        $sql = new Sql($adapter);
+
+        $select = $sql->select();
+        $select->from(array('g'=>'grob',))
+               ->join(array('o'=>'osoba'), 'g.osobaid = o.id', array('osoba' => 'imie_nazwisko'), $select::JOIN_LEFT);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = $statement->execute();
         return $resultSet;
     }
 
     /**
-     * 
      * @return \Application\Entity\Grob
-     * 
      */
     public function get($id)
     {
         $id  = (int) $id;
-        $rowset = $this->tableGateway->select(array('id'=>$id));
-        return $rowset->current();
+        $adapter = $this->tableGateway->getAdapter();
+        $sql = new Sql($adapter);
+
+        $select = $sql->select();
+        $select->from(array('g'=>'grob',))
+               ->join(array('o'=>'osoba'), 'g.osobaid = o.id', array('osoba' => 'imie_nazwisko'), $select::JOIN_LEFT)
+               ->where->equalTo('osobaid', $id);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = $statement->execute();
+        return $resultSet;
     }
     
     public function add(Grob $rekord) {

@@ -146,39 +146,39 @@ return array(
                 ),
             ),
             /*
-             * slub
+             * sluby
              */
-            /*
-              'osoba' => array(
+            
+              'sluby' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/osoba[/:id]',
+                    'route'    => '/sluby[/:id]',
                     'constraints' => array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Osoba',
+                        'controller' => 'Application\Controller\Slub',
                     ),
                 ),
             ),
-            */
+            
             /*
              * chrzest
              */
-            /*
-              'osoba' => array(
+            
+              'chrzty' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/osoba[/:id]',
+                    'route'    => '/chrzty[/:id]',
                     'constraints' => array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Osoba',
+                        'controller' => 'Application\Controller\Chrzest',
                     ),
                 ),
             ),
-            */
+            
 
             
         ),
@@ -193,6 +193,8 @@ return array(
             'Application\Controller\Sakrament' => 'Application\Controller\SakramentController',
             'Application\Controller\Grob' => 'Application\Controller\GrobController',
             'Application\Controller\Pogrzeb' => 'Application\Controller\PogrzebController',
+            'Application\Controller\Slub' => 'Application\Controller\SlubController',
+            'Application\Controller\Chrzest' => 'Application\Controller\ChrzestController',
         ),
     ),
     'view_manager' => array(

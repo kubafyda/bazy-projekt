@@ -80,6 +80,22 @@ class Module
                     
                     return new Model\PogrzebTabela($tableGateway);
                 },       
+                'SlubTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Slub());
+                    $tableGateway = new TableGateway('slub',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\SlubTabela($tableGateway);
+                },   
+                'ChrzestTabela' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Entity\Chrzest());
+                    $tableGateway = new TableGateway('chrzest',$dbAdapter,null,$resultSetPrototype,null);
+                    
+                    return new Model\ChrzestTabela($tableGateway);
+                },
             ),
         );
     }

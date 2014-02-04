@@ -60,6 +60,7 @@ class PogrzebController extends AbstractRestfulController
 
     public function delete($id) {   // Action used for DELETE requests
         $this->getPogrzebTabela()->delete($id);
+        $this->getSakramentTabela()->delete($id);
         return new JsonModel(array('id' => $id));
     }
     

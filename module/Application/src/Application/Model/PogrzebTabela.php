@@ -76,7 +76,7 @@ class PogrzebTabela {
     }
     
     public function delete($id) {
-        if($this->tableGateway->delete(array('id' => $id))) {
+        if($this->tableGateway->delete(array('sakramentid' => $id))) {
             return $id;
         } else {
             throw new Exception("DB delete error");

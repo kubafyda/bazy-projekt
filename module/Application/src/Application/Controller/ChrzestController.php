@@ -45,8 +45,7 @@ class ChrzestController extends AbstractRestfulController
         
         $sakramentId = $this->getSakramentTabela()->add($sakrament);
         $rekord->sakramentid = $sakramentId;
-        //$rekord->dzieckoid = $data['dzieckoid'];
-        
+        $rekord->dzieckoid = $data['dzieckoid'];
         $rekord->dane_matki = $data['dane_matki'];
         $rekord->dane_ojca = $data['dane_ojca'];
         $rekord->dane_chrzestnej = $data['dane_chrzestnej'];

@@ -1,16 +1,11 @@
 <?php
 
 namespace Application\Entity;
-
-
-    
    
 class Chrzest {
        
         public $sakramentid;
-       // public $dzieckoid;
-        
-	   
+        public $dzieckoid;
 	/**
 	 * @AttributeType String
 	 */
@@ -31,7 +26,7 @@ class Chrzest {
 	
         public function exchangeArray($data){
             $this->sakramentid = (isset($data['sakramentid'])) ? $data['sakramentid'] : null;
-            //$this->dzieckoid = (isset($data['dzieckoid'])) ? $data['dzieckoid'] : null;
+            $this->dzieckoid = (isset($data['dzieckoid'])) ? $data['dzieckoid'] : null;
             $this->dane_matki = (isset($data['dane_matki'])) ? $data['dane_matki'] : null;
             $this->dane_ojca = (isset($data['dane_ojca'])) ? $data['dane_ojca'] : null;
             $this->dane_chrzestnej = (isset($data['dane_chrzestnej'])) ? $data['dane_chrzestnej'] : null;
@@ -41,7 +36,7 @@ class Chrzest {
         public function extract() {
             return array(
                 'sakramentid' => $this->sakramentid,
-                //'dzieckoid' => $this->dzieckoid,
+                'dzieckoid' => $this->dzieckoid,
                 'dane_matki' => $this->dane_matki,
                 'dane_ojca' => $this->dane_ojca,
                 'dane_chrzestnej' => $this->dane_chrzestnej,

@@ -15,11 +15,8 @@ class ChrzestTabela {
     {
         $this->tableGateway = $tableGateway;
     }
-    
     /**
-     * 
      * @return array of \Application\Entity\Chrzest;
-     * 
      */
     public function getAll(){
         $adapter = $this->tableGateway->getAdapter();
@@ -27,7 +24,6 @@ class ChrzestTabela {
 
         $select = $sql->select();
         $select->from(array('p'=>'chrzest',))
-              // ->columns(array('dzieckoid'))
                ->join(array('s'=>'sakrament'), 'p.sakramentid = s.id', array('*'), $select::JOIN_LEFT);
 
         $statement = $sql->prepareStatementForSqlObject($select);

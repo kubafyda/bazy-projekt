@@ -46,15 +46,11 @@ class SlubController extends AbstractRestfulController
         $sakramentId = $this->getSakramentTabela()->add($sakrament);
         
         $rekord->sakramentid = $sakramentId;
-        
         $rekord->dane_mlodego = $data['dane_mlodego'];
         $rekord->dane_mlodej = $data['dane_mlodej'];
         $rekord->dane_swiadka = $data['dane_swiadka'];
-        $rekord->dane_swiadkowej = $data['dane_swiatkowej'];
+        $rekord->dane_swiadkowej = $data['dane_swiadkowej'];
         
-     
-                
-       
         $this->getSlubTabela()->add($rekord);
         return new JsonModel(array('data' => $data));
     }

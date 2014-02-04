@@ -6,11 +6,12 @@ use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
 
 use Application\Entity\Pogrzeb;
+use Application\Entity\Sakrament;
 
 class PogrzebController extends AbstractRestfulController
 {
-    private $osobaTabele;
-    
+    private $table;
+    private $sakramentTable;
  
     public function getList() {     // Action used for GET requests without resource Id
         $results = $this->getPogrzebTabela()->getAll();
@@ -39,7 +40,12 @@ class PogrzebController extends AbstractRestfulController
 
     public function create($data) {   // Action used for POST requests
         $rekord = new Pogrzeb();
-        $rekord->exchangeArray($data);
+        $sakrament = new Sakrament();
+        $sakrament->exchangeArray($data);
+        
+        $sakramentId = $this->getSakramentTabela()->add($sakrament);
+        $rekord->sakramentid = $sakramentId;
+        $rekord->grobid = $data['grobid']; 
         $this->getPogrzebTabela()->add($rekord);
         return new JsonModel(array('data' => $data));
     }
@@ -58,14 +64,22 @@ class PogrzebController extends AbstractRestfulController
     }
     
     /**
-     * 
      * @return \Application\Model\PogrzebTabela
      */
     public function getPogrzebTabela(){
-        if(!$this->osobaTabele){
-            $this->osobaTabele = $this->getServiceLocator()->get('PogrzebTabela');
+        if(!$this->table){
+            $this->table = $this->getServiceLocator()->get('PogrzebTabela');
         }
-        return $this->osobaTabele;
+        return $this->table;
+    }
+    /**
+     * @return \Application\Model\SakramentTabela
+     */
+    public function getSakramentTabela(){
+        if(!$this->sakramentTable){
+            $this->sakramentTable = $this->getServiceLocator()->get('SakramentTabela');
+        }
+        return $this->sakramentTable;
     }
 }
 

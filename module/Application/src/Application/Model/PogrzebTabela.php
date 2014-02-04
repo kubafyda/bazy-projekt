@@ -4,6 +4,7 @@ namespace Application\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 use Exception;
+use Zend\Db\Sql\Sql;
 
 use Application\Entity\Pogrzeb;
 
@@ -21,7 +22,16 @@ class PogrzebTabela {
      * 
      */
     public function getAll(){
-        $resultSet = $this->tableGateway->select();
+        $adapter = $this->tableGateway->getAdapter();
+        $sql = new Sql($adapter);
+
+        $select = $sql->select();
+        $select->from(array('p'=>'pogrzeb',))
+               ->columns(array('grobid'))
+               ->join(array('s'=>'sakrament'), 'p.sakramentid = s.id', array('*'), $select::JOIN_LEFT);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = $statement->execute();
         return $resultSet;
     }
 
@@ -30,11 +40,20 @@ class PogrzebTabela {
      * @return \Application\Entity\Pogrzeb
      * 
      */
-    public function get($id)
-    {
+    public function get($id) {
         $id  = (int) $id;
-        $rowset = $this->tableGateway->select(array('id'=>$id));
-        return $rowset->current();
+        $adapter = $this->tableGateway->getAdapter();
+        $sql = new Sql($adapter);
+
+        $select = $sql->select();
+        $select->from(array('p'=>'pogrzeb',))
+               ->columns(array('grobid'))
+               ->join(array('s'=>'sakrament'), 'p.sakramentid = s.id', array('*'), $select::JOIN_LEFT)
+               ->where->equalTo('sakramentid', $id);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = $statement->execute();
+        return $resultSet;
     }
     
     public function add(Pogrzeb $rekord) {

@@ -39,6 +39,7 @@ class GrobController extends AbstractRestfulController
 
     public function create($data) {   // Action used for POST requests
         $rekord = new Grob();
+        
         $rekord->exchangeArray($data);
         $this->getGrobTabela()->add($rekord);
         return new JsonModel(array('data' => $data));

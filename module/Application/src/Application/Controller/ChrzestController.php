@@ -50,8 +50,12 @@ class ChrzestController extends AbstractRestfulController
         $rekord->dane_ojca = $data['dane_ojca'];
         $rekord->dane_chrzestnej = $data['dane_chrzestnej'];
         $rekord->dane_chrzestnego = $data['dane_chrzestnego'];
+        
+        
        
         $this->getChrzestTabela()->add($rekord);
+        
+        
         return new JsonModel(array('data' => $data));
     }
 

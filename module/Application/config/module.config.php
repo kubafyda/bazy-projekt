@@ -163,7 +163,7 @@ return array(
             ),
             
             /*
-             * chrzest
+             * chrzty
              */
             
               'chrzty' => array(

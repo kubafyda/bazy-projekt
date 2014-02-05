@@ -46,7 +46,9 @@ class PogrzebController extends AbstractRestfulController
         $sakramentId = $this->getSakramentTabela()->add($sakrament);
         $rekord->sakramentid = $sakramentId;
         $rekord->grobid = $data['grobid']; 
+        
         $this->getPogrzebTabela()->add($rekord);
+        
         return new JsonModel(array('data' => $data));
     }
 

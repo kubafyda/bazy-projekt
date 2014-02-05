@@ -28,7 +28,9 @@ class PogrzebTabela {
         $select = $sql->select();
         $select->from(array('p'=>'pogrzeb',))
                ->columns(array('grobid'))
-               ->join(array('s'=>'sakrament'), 'p.sakramentid = s.id', array('*'), $select::JOIN_LEFT);
+               ->join(array('s'=>'sakrament'), 'p.sakramentid = s.id', array('*'), $select::JOIN_LEFT)
+               ->join(array('o'=>'osoba'), 's.osobaid = o.id', array('osoba' => 'imie_nazwisko'), $select::JOIN_LEFT)
+               ->join(array('k'=>'ksiadz'), 's.ksiadzid = k.id', array('ksiadz' => 'imie_nazwisko'), $select::JOIN_LEFT);
 
         $statement = $sql->prepareStatementForSqlObject($select);
         $resultSet = $statement->execute();
@@ -53,7 +55,7 @@ class PogrzebTabela {
 
         $statement = $sql->prepareStatementForSqlObject($select);
         $resultSet = $statement->execute();
-        return $resultSet;
+        return $resultSet->current();
     }
     
     public function add(Pogrzeb $rekord) {
@@ -68,11 +70,14 @@ class PogrzebTabela {
     
     public function update($id, Pogrzeb $rekord) {
         $data = $rekord->extract();
-        if($this->tableGateway->update($data, array('id'=>$id))){
+//        var_dump($data);
+//        echo $id;
+        if($this->tableGateway->update($data, array('sakramentid'=>$id))){
             return $id;
         } else {
             throw new Exception('DB insert project error');
         }
+        
     }
     
     public function delete($id) {

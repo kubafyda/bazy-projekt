@@ -14,7 +14,7 @@ class Pogrzeb {
         
         public function extract() {
             return array(
-                'sakramentid' => $this->sakramentid,
+//                'sakramentid' => $this->sakramentid,
                 'grobid' => $this->grobid,
            );
         }

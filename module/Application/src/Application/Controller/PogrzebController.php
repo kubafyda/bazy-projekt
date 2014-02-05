@@ -44,8 +44,8 @@ class PogrzebController extends AbstractRestfulController
         $sakrament->exchangeArray($data);
         
         $sakramentId = $this->getSakramentTabela()->add($sakrament);
+        $rekord->exchangeArray($data);
         $rekord->sakramentid = $sakramentId;
-        $rekord->grobid = $data['grobid']; 
         
         $this->getPogrzebTabela()->add($rekord);
         
@@ -54,8 +54,14 @@ class PogrzebController extends AbstractRestfulController
 
     public function update($id, $data) {   // Action used for PUT requests
         $rekord = new Pogrzeb();
+        $sakrament = new Sakrament();
         $rekord->exchangeArray($data);
+        $rekord->sakramentid = $id;
         $this->getPogrzebTabela()->update($id, $rekord);
+        
+        $sakrament->exchangeArray($data);
+        $sakrament->id = $id;
+        $this->getSakramentTabela()->update($id, $sakrament);
 
         return new JsonModel(array('id' => $id, 'data' => $data));
     }

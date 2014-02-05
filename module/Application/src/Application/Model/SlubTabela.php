@@ -52,7 +52,7 @@ class SlubTabela {
 
         $statement = $sql->prepareStatementForSqlObject($select);
         $resultSet = $statement->execute();
-        return $resultSet;
+        return $resultSet->current();
     }
     
     public function add(Slub $rekord) {

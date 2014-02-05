@@ -22,7 +22,7 @@ class Sakrament {
         
         public function extract() {
             return array(
-                'id' => $this->id,
+//                'id' => $this->id,
                 'osobaid' => $this->osobaid,
                 'ksiadzid' => $this->ksiadzid,
                 'miejsce_sakramentu' => $this->miejsce_sakramentu,

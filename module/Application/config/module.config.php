@@ -197,9 +197,17 @@ return array(
             'Application\Controller\Chrzest' => 'Application\Controller\ChrzestController',
         ),
     ),
+    'errors' => array(
+        'post_processor' => 'json-pp',
+        'show_exceptions' => array(
+            'message' => true,
+            'trace' => true,
+        )
+    ),
     'view_manager' => array(
         'strategies' => array(
             'ViewJsonStrategy'
-        )
+        )      
     ),
+  
 );

@@ -4,6 +4,7 @@ namespace Application\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 use Exception;
+use Zend\Db\Sql\Sql;
 
 use Application\Entity\Osoba;
 
@@ -21,7 +22,16 @@ class OsobaTabela {
      * 
      */
     public function getAll(){
-        $resultSet = $this->tableGateway->select();
+        $adapter = $this->tableGateway->getAdapter();
+        $sql = new Sql($adapter);
+
+        $select = $sql->select();
+        $select->from(array('o'=>'osoba'))
+               ->join(array('om'=>'osoba_mieszkanie'), 'om.osobaid = o.id', array('mieszkanieid'), $select::JOIN_LEFT)
+               ->join(array('m'=>'mieszkanie'), 'om.mieszkanieid = m.id', array('ulica', 'nr_bloku', 'nr_mieszkania'), $select::JOIN_LEFT);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = $statement->execute();
         return $resultSet;
     }
 
@@ -33,20 +43,22 @@ class OsobaTabela {
     public function get($id)
     {
         $id  = (int) $id;
-        $rowset = $this->tableGateway->select(array('id'=>$id));
-        return $rowset->current();
+        $adapter = $this->tableGateway->getAdapter();
+        $sql = new Sql($adapter);
+
+        $select = $sql->select();
+        $select->from(array('o'=>'osoba'))
+               ->join(array('om'=>'osoba_mieszkanie'), 'om.osobaid = o.id', array('mieszkanieid'), $select::JOIN_LEFT)
+               ->join(array('m'=>'mieszkanie'), 'om.mieszkanieid = m.id', array('ulica', 'nr_bloku', 'nr_mieszkania'), $select::JOIN_LEFT)
+               ->where->equalTo('o.id', $id);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = $statement->execute();
+        return $resultSet->current();
     }
     
     public function add(Osoba $rekord) {
-        $data = array(
-            'id' => $rekord->id,
-            'imie_nazwisko' => $rekord->imie_nazwisko,
-            'data_urodzenia' => $rekord->data_urodzenia,
-            'zawod' => $rekord->zawod,
-            'parafianin' => $rekord->parafianin,
-            'zywa' => $rekord->zywa,
-            
-           );
+        $data = $rekord->extract($rekord);
         
         if($this->tableGateway->insert($data)){
             return $this->tableGateway->lastInsertValue;
@@ -56,17 +68,11 @@ class OsobaTabela {
     }
     
     public function update($id, Osoba $rekord) {
-        $data = array(
-            'imie_nazwisko' => $rekord->imie_nazwisko,
-            'data_urodzenia' => $rekord->data_urodzenia,
-            'zawod' => $rekord->zawod,
-            'parafianin' => $rekord->parafianin,
-            'zywa' => $rekord->zywa,
-        );
-        if($this->tableGateway->update($data, array('id'=>$id))){
+        $data = $rekord->extract($rekord);
+        if($this->tableGateway->update($data, array('id' => $id))){
             return $id;
         } else {
-            throw new Exception('DB insert project error');
+//            throw new Exception('DB insert project error');
         }
     }
     

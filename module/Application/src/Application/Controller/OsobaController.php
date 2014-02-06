@@ -6,10 +6,12 @@ use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
 
 use Application\Entity\Osoba;
+use Application\Entity\OsobaMieszkanie;
 
 class OsobaController extends AbstractRestfulController
 {
-    private $osobaTabele;
+    private $table;
+    private $osobaMieszkanieTable;
     
  
     public function getList() {     // Action used for GET requests without resource Id
@@ -39,15 +41,25 @@ class OsobaController extends AbstractRestfulController
 
     public function create($data) {   // Action used for POST requests
         $rekord = new Osoba();
+        $osobaMieszkanie = new OsobaMieszkanie();
         $rekord->exchangeArray($data);
-        $this->getOsobaTabela()->add($rekord);
+        $osobaId = $this->getOsobaTabela()->add($rekord);
+        
+        $osobaMieszkanie->exchangeArray($data);
+        $osobaMieszkanie->osobaid = $osobaId;
+        $this->getOsobaMieszkanieTabela()->add($osobaMieszkanie);
         return new JsonModel(array('data' => $data));
     }
 
     public function update($id, $data) {   // Action used for PUT requests
         $rekord = new Osoba();
+        $osobaMieszkanie = new OsobaMieszkanie();
         $rekord->exchangeArray($data);
         $this->getOsobaTabela()->update($id, $rekord);
+        
+        $osobaMieszkanie->exchangeArray($data);
+        $osobaMieszkanie->osobaid = $rekord->id;
+        $this->getOsobaMieszkanieTabela()->update($id, $osobaMieszkanie);
 
         return new JsonModel(array('id' => $id, 'data' => $data));
     }
@@ -62,10 +74,20 @@ class OsobaController extends AbstractRestfulController
      * @return \Application\Model\OsobaTabela
      */
     public function getOsobaTabela(){
-        if(!$this->osobaTabele){
-            $this->osobaTabele = $this->getServiceLocator()->get('OsobaTabela');
+        if(!$this->table){
+            $this->table = $this->getServiceLocator()->get('OsobaTabela');
         }
-        return $this->osobaTabele;
+        return $this->table;
+    }
+    /**
+     * 
+     * @return \Application\Model\OsobaMieszkanieTabela
+     */
+    public function getOsobaMieszkanieTabela() {
+        if(!$this->osobaMieszkanieTable){
+            $this->osobaMieszkanieTable = $this->getServiceLocator()->get('OsobaMieszkanieTabela');
+        }
+        return $this->osobaMieszkanieTable;
     }
 }
 

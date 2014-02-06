@@ -50,7 +50,15 @@ class Osoba {
         }
         
         
-	
+	public function extract($object) {
+            return array(
+                'imie_nazwisko' => $object->imie_nazwisko,
+                'data_urodzenia' => $object->data_urodzenia,
+                'zawod' => $object->zawod,
+                'parafianin' => $object->parafianin,
+                'zywa' => $object->zywa,
+            );
+        }
 	
 }
 ?>

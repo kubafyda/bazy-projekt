@@ -52,21 +52,21 @@ class GrobTabela {
     }
     
     public function add(Grob $rekord) {
-        $data = $rekord->extract();
+        $data = $rekord->extractWithId($rekord);
         
         if($this->tableGateway->insert($data)){
             return $this->tableGateway->lastInsertValue;
         } else {
-            throw new Exception('DB insert project error');
+//            throw new Exception('DB insert project error');
         }
     }
     
     public function update($id, Grob $rekord) {
-        $data = $rekord->extract();
+        $data = $rekord->extract($rekord);
         if($this->tableGateway->update($data, array('id'=>$id))){
             return $id;
         } else {
-            throw new Exception('DB insert project error');
+//            throw new Exception('DB insert project error');
         }
     }
     

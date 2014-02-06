@@ -20,14 +20,24 @@ class Grob {
             $this->data_zgonu = (isset($data['data_zgonu'])) ? $data['data_zgonu'] : null;
         }
         
-        public function extract() {
+        public function extract($object) {
             return array(
-                'id' => $this->id,
-                'osobaid' => $this->osobaid,
-                'blok' => $this->blok,
-                'sektor' => $this->sektor,
-                'numer' => $this->numer,
-                'data_zgonu' => $this->data_zgonu,
+                'osobaid' => $object->osobaid,
+                'blok' => $object->blok,
+                'sektor' => $object->sektor,
+                'numer' => $object->numer,
+                'data_zgonu' => $object->data_zgonu,
+           );
+        }
+        
+        public function extractWithId($object) {
+            return array(
+                'id' => $object->id,
+                'osobaid' => $object->osobaid,
+                'blok' => $object->blok,
+                'sektor' => $object->sektor,
+                'numer' => $object->numer,
+                'data_zgonu' => $object->data_zgonu,
            );
         }
 }

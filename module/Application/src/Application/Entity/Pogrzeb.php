@@ -12,10 +12,16 @@ class Pogrzeb {
             $this->grobid = (isset($data['grobid'])) ? $data['grobid'] : null;
         }
         
-        public function extract() {
+        public function extract($object) {
             return array(
-//                'sakramentid' => $this->sakramentid,
-                'grobid' => $this->grobid,
+                'grobid' => $object->grobid,
+           );
+        }
+        
+         public function extractWithId($object) {
+            return array(
+                'sakramentid' => $object->sakramentid,
+                'grobid' => $object->grobid,
            );
         }
 }

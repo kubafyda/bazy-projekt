@@ -63,7 +63,7 @@ class OsobaTabela {
         if($this->tableGateway->insert($data)){
             return $this->tableGateway->lastInsertValue;
         } else {
-            throw new Exception('DB insert project error');
+//            throw new Exception('DB insert project error');
         }
     }
     

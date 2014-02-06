@@ -9,7 +9,7 @@ use Application\Entity\Grob;
 
 class GrobController extends AbstractRestfulController
 {
-    private $osobaTabele;
+    private $table;
     
  
     public function getList() {     // Action used for GET requests without resource Id
@@ -63,10 +63,10 @@ class GrobController extends AbstractRestfulController
      * @return \Application\Model\GrobTabela
      */
     public function getGrobTabela(){
-        if(!$this->osobaTabele){
-            $this->osobaTabele = $this->getServiceLocator()->get('GrobTabela');
+        if(!$this->table){
+            $this->table = $this->getServiceLocator()->get('GrobTabela');
         }
-        return $this->osobaTabele;
+        return $this->table;
     }
 }
 
